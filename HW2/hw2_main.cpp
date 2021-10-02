@@ -12,5 +12,6 @@ int main(){
     print_date(2, 1, -1990);
 
     print_date(0, 1, 2000);
+    print_date(13, 1, 1990);
 
 }

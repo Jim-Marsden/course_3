@@ -3,7 +3,7 @@
 //
 
 #ifndef JIMMARSDEN_DATE_H
-#define JIMARSDEN_DATE_H
+#define JIMMARSDEN_DATE_H
 
 namespace JimMarsden {
     namespace DateConsts{
