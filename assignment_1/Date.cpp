@@ -5,7 +5,7 @@
 #include "Date.hpp"
 #include <iostream>
 
-Date::Date(int month, int day, int year)  {
+Date::Date(int month, int day, int year) noexcept {
     setDay(day);
     setMonth(month);
     setYear(year);

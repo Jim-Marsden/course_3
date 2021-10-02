@@ -10,7 +10,7 @@ class Date {
 public:
     Date() = delete;
 
-    Date(int month, int day, int year);
+    Date(int month, int day, int year) noexcept;
 
     Date(Date const &d) = default;
 
