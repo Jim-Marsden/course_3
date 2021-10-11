@@ -1,7 +1,18 @@
 //
-// Created by james on 10/1/2021.
+// Jim Marsden (U09247027)
+// JimPMarsden@gmail.com
+// CSE-40477
+// 159167 C/C++ Programming III -- Ray Mitchell
+// 9/26/2021
+// https://Jim-Marsden/course_3
+// =====================================================================
+// Date.cpp Tested on the following compilers in C++17 standard
+// MSVC - 14.19, clang 12.1, g++ 11.0
 //
-
+// A class to hold a date, with light validation.
+// The default constructor will always the current date valid
+// =====================================================================
+//
 #include "Date.h"
 
 #include <chrono>
@@ -9,6 +20,13 @@
 
 static int days_in_months(int month, int year);
 
+
+/*
+ * Returns the appropriate number of days in the month. E.g., 31 in January
+ * Also checks for leap years.
+ *
+ * Prints to STDERR if the months isn't 1..12
+ */
 int days_in_months(int month, int year) {
 
     switch (month) {
@@ -19,16 +37,16 @@ int days_in_months(int month, int year) {
         case 7: // July
         case 8: // August
         case 10: // October
-        case 12: // Decemeber
+        case 12: // December
             return 31;
 
-            //30 day months
+        //30 day months
         case 4: // April
         case 6: // June
         case 9: // September
         case 11: // November
             return 30;
-            //feb
+        //feb
         case 2:
             if (year % 400 != 0 && year % 4 == 0 || year % 100 == 0) {
                 return 29;
@@ -52,10 +70,10 @@ JimMarsden::Date::Date(int month, int day, int year) {
 }
 
 JimMarsden::Date::Date() {
-    using std::chrono::system_clock;
-    auto const current_time = system_clock::now();
-    auto const current_time_t = system_clock::to_time_t(current_time);
-    tm local_tm = *localtime(&current_time_t);
+    namespace chrono = std::chrono;
+    auto const current_time = chrono::system_clock::now(); // gets the current time
+    auto const current_time_t = chrono::system_clock::to_time_t(current_time); // converts to time_t
+    tm local_tm = *localtime(&current_time_t); // gets time struct from time_t
 
     // We store months 1..12, local_tm stores time from 0..11
     this->month = local_tm.tm_mon + 1;
@@ -87,13 +105,13 @@ void JimMarsden::Date::setDay(int day) {
         // if we want to handle issues with large days, we can put it here.
         std::cerr << "Day is too large, " << max_day << " max.\n";
     }
-    if(day <= 0){
+    if (day <= 0) {
         std::cerr << "Day is too small, 1 is minimum.\n";
     }
     this->day = day;
 }
 
-void JimMarsden::Date::setYear(int year){
+void JimMarsden::Date::setYear(int year) {
     if (year < JimMarsden::DateConsts::year_min) {
         // if we want to handle an invalid year
         std::cerr << "Year is below minimum value: " << JimMarsden::DateConsts::year_min << '\n';

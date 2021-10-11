@@ -1,0 +1,7 @@
+1) Coin.cpp [Done]
+2) Product.cpp [done]
+3) ProductButton.cpp
+4) DeliveryChute.cpp
+5) StatusPanel.cpp
+6) ProductRack
+7) VendingMachine.cpp

@@ -1,12 +1,23 @@
 //
-// Created by james on 10/1/2021.
+// Jim Marsden (U09247027)
+// JimPMarsden@gmail.com
+// CSE-40477
+// 159167 C/C++ Programming III -- Ray Mitchell
+// 9/26/2021
+// https://Jim-Marsden/course_3
+// =====================================================================
+// Date.h Tested on the following compilers in C++17 standard
+// MSVC - 14.19, clang 12.1, g++ 11.0
 //
-
+// A class to hold a date, with light validation.
+// The default constructor will always the current date valid
+// =====================================================================
+//
 #ifndef JIMMARSDEN_DATE_H
 #define JIMMARSDEN_DATE_H
 
 namespace JimMarsden {
-    namespace DateConsts{
+    namespace DateConsts {
         constexpr auto month_min{1};
         constexpr auto month_max{12};
 
@@ -18,39 +29,40 @@ namespace JimMarsden {
 
         Date(int month, int day, int year);
 
+        // Sets month, day, year based on system time
         Date();
 
         ~Date() = default;
 
-        Date(Date const &) = default;
+        Date(Date const &) = default; //copy
 
-        Date(Date &&) = default;
+        Date(Date &&) = default; // move
 
         //Mutators
         [[nodiscard]] inline int getMonth() const;
 
-        /*
-         * not inlined so we don't have to expose iostream
-         * Validates the range of months, without mutating the value
-         * Valid months 1..12
-         */
-        void setMonth(int month); // not inlined so we don't have to expose iostream
-
         [[nodiscard]] inline int getDay() const;
-        /*
-         * not inlined so we don't have to expose iostream
-         * Validates the day, insuring that whatever mothn it is, has more days than the month does, handling for
-         * leap years
-         *
-         * Doesn't mutate the input, accepts it.
-         */
-        void setDay(int day); // not inlined so we don't have to expose iostream
 
         [[nodiscard]] inline int getYear() const;
-        void setYear(int year); // not inlined so we don't have to expose iostream
 
         //Utility
         void display() const;
+
+    protected:
+
+        /*
+         * It was suggested in Lesson 2 that we use setters as a best practice.
+         *
+         * The following mutators are protected as they are not stated on the UML
+         * They are not inlined as to avoid needing to have any includes such as iostream
+         *
+         * They report an error via STDERR
+         * They do not change the parameter's value, only report issues with invalid ranges.
+         *
+         */
+        void setYear(int year); // Valid range: year > 0
+        void setDay(int day); // Valid range: 28..31 (depending on Date::month and Date::year)
+        void setMonth(int month); // Valid range: 1..12
 
     private:
         int month, day, year;
@@ -67,7 +79,7 @@ int JimMarsden::Date::getDay() const {
 }
 
 int JimMarsden::Date::getYear() const {
-    return  year;
+    return year;
 }
 
 
