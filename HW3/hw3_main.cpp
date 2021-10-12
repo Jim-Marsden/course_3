@@ -1,7 +1,16 @@
 //
-// Created by james on 10/8/2021.
+// Jim Marsden (U09247027)
+// JimPMarsden@gmail.com
+// CSE-40477
+// 159167 C/C++ Programming III -- Ray Mitchell
+// 10/9/2021
+// https://Jim-Marsden/course_3
+// =====================================================================
+// hw3.cpp Tested on the following compilers in C++17 standard
+// MSVC - 14.19, clang 12.1, g++ 11.0
+// Tests the HW3/SavingsAccount class.
+// =====================================================================
 //
-
 #include "SavingsAccount.h"
 
 #include <iostream>
