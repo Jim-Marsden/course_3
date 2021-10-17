@@ -26,7 +26,8 @@ double JimMarsden::SavingsAccount::annualInterestRate{0.0};
  * Validates that val is 0..*.
  * If val is not valid, set it to 0 and prints message to STDERR.
  *
- * This is a template to avoid assuming types.
+ * This way it will be type agnostic, so long as there is a valid < operator.
+ * If a double gets changed to a long long, or long double, everything would remain valid.
  */
 template<class validation_t, class message_t>
 constexpr static validation_t validate_above_0(validation_t const & val, message_t const &message) {
@@ -40,7 +41,7 @@ constexpr static validation_t validate_above_0(validation_t const & val, message
 //Constructors ==========================================================
 
 JimMarsden::SavingsAccount::SavingsAccount(double initialBalance) :
-        savingsBalance{validate_above_0(initialBalance, "The initial balance cannot be below 0")} {}
+        savingsBalance{validate_above_0(initialBalance, "The initial balance cannot be below 0.00.")} {}
 
 
 // updates savingsBalance based on annualInterestRate / 12
@@ -53,7 +54,7 @@ void JimMarsden::SavingsAccount::applyMonthlyInterest() noexcept {
 // Statics
 
 void JimMarsden::SavingsAccount::setAnnualInterestRate(double interest_rate) noexcept {
-    SavingsAccount::annualInterestRate = validate_above_0(interest_rate, "The interest rate cannot go below 0.0f");
+    SavingsAccount::annualInterestRate = validate_above_0(interest_rate, "The interest rate cannot go below 0.00.");
 }
 
 

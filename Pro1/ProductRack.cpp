@@ -40,13 +40,13 @@ Project1::ProductRack::isCompatibleProduct(const char *productName) const {
 bool
 Project1::ProductRack::isFull() const {
     // TODO: Implement
-    return productCount < MAX_PRODUCTS;
+    return productCount >= MAX_PRODUCTS;
 }
 
 bool
 Project1::ProductRack::isEmpty() const {
     // TODO: Implement
-    return productCount < 0;
+    return productCount == 0 && products[0] == nullptr;
 }
 
 bool
@@ -74,12 +74,15 @@ Project1::ProductRack::addProduct(Product *pProduct) {
 bool
 Project1::ProductRack::deliverProduct() {
 
-    if (productCount < MAX_PRODUCTS && productCount >= 1) {
-        if (deliveryChute.insertProduct(products[productCount - 1])) {
-            products[productCount - 1] = nullptr;
-            productCount--;
-            return true;
-        }
+    if(isEmpty()){
+        statusPanel.displayMessage(StatusPanel::MESSAGECODE_SOLD_OUT);
+        return false;
+    }
+    if(deliveryChute.insertProduct(products[ productCount - 1])){
+        products[productCount - 1] = nullptr;
+        productCount--;
+
+        return true;
     }
     // TODO: Implement
     return false;

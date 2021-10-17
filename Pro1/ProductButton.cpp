@@ -20,12 +20,12 @@ bool
 Project1::ProductButton::press()
 {
     // TODO: Implement
-    return false;
+    return productRack.deliverProduct();
 }
 
 unsigned
 Project1::ProductButton::getProductPriceCents() const
 {
     // TODO: Implement
-    return 0;
+    return productRack.getProductPriceCents();
 }

@@ -52,6 +52,7 @@ namespace JimMarsden {
         static void setAnnualInterestRate(double interest_rate)  noexcept;
 
     private:
+        // Ideally would not be stored as floating point numbers, but integers.
         double savingsBalance;
         static double annualInterestRate;
     };
