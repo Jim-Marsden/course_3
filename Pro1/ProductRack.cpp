@@ -30,7 +30,6 @@ Project1::ProductRack::~ProductRack() {
     for(auto & product : products){
         delete product;
     }
-    // TODO: Implement
 }
 
 bool
