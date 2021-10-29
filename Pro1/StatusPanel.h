@@ -60,7 +60,7 @@ namespace Project1
             // purchase
             MESSAGECODE_INSUFFICIENT_MONEY,
 
-            // End of error code range (not a real message); used to size
+            // End of error code range (not a real message); used to SIZE
             // array messages
             MESSAGECODE_ERRORS_END
         };

@@ -12,7 +12,7 @@ namespace Project1
 {
     //=========================================================================
     // SUMMARY
-    //      A product (soda) having the given brand, name, and size.  Example
+    //      A product (soda) having the given brand, name, and SIZE.  Example
     //      brands include "Pepsi Cola" and "Coca Cola".  Example names include
     //      "Pepsi" and "Coke".  Example sizes include "12 fl oz".
     //
@@ -29,7 +29,7 @@ namespace Project1
         //---------------------------------------------------------------------
         // SUMMARY
         //      Constructor.  Creates a product of the given brand, name, and
-        //      size.  The name identifies the product; two products with the
+        //      SIZE.  The name identifies the product; two products with the
         //      same name are considered to be the same product type.
         //
         // RESOURCES
@@ -44,8 +44,8 @@ namespace Project1
         //          two products with the same name are considered to be the
         //          same product type.  It is safe to assume name will never
         //          be longer than MAX_NAME_LENGTH.
-        //      size
-        //          The product's size.  It is safe to assume size will never
+        //      SIZE
+        //          The product's SIZE.  It is safe to assume SIZE will never
         //          be longer than MAX_SIZE_LENGTH.
         //
         // RETURNS
@@ -89,17 +89,17 @@ namespace Project1
 
         //---------------------------------------------------------------------
         // SUMMARY
-        //      Get and set the product's size.
+        //      Get and set the product's SIZE.
         //
         // RESOURCES
         //      None
         //
         // PARAMETERS
-        //      size
-        //          The product's size (e.g. 12 fl. oz.).
+        //      SIZE
+        //          The product's SIZE (e.g. 12 fl. oz.).
         //
         // RETURNS
-        //      The product's size.
+        //      The product's SIZE.
         //---------------------------------------------------------------------
         const char *getSize() const;
         void setSize(const char *value);
