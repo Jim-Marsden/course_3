@@ -166,7 +166,7 @@ void TestConstantSignal_Zeroed()
 {
 	TestFramework::BeginTest("TestConstantSignal_Zeroed");
 
-	ConstantSignal cs(0, Time(0, 0, 0));
+	ConstantSignal cs(Time(0, 0, 0), 0);
 	TEST_ASSERT(0 == cs.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(0 == cs.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(0 == cs.getVoltageAtTime(Time(327, 59, 59)));
@@ -179,13 +179,13 @@ void TestConstantSignal_VariedVoltageOffset()
 	TestFramework::BeginTest("TestConstantSignal_VariedVoltageOffset");
 
 	// Positive voltage offset
-	ConstantSignal cs1(12.5, Time(0, 0, 0));
+	ConstantSignal cs1(Time(0, 0, 0), 12.5);
 	TEST_ASSERT(12.5 == cs1.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(12.5 == cs1.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(12.5 == cs1.getVoltageAtTime(Time(327, 59, 59)));
 
 	// Negative voltage offset
-	ConstantSignal cs2(-12.5, Time(0, 0, 0));
+	ConstantSignal cs2(Time(0, 0, 0), -12.5);
 	TEST_ASSERT(-12.5 == cs2.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(-12.5 == cs2.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(-12.5 == cs2.getVoltageAtTime(Time(327, 59, 59)));
@@ -198,7 +198,7 @@ void TestConstantSignal_VariedTimeOffset()
 	TestFramework::BeginTest("TestConstantSignal_VariedTimeOffset");
 
 	// Positive time offset
-	ConstantSignal cs1(0, Time(1, 2, 3));
+	ConstantSignal cs1(Time(1, 2, 3), 0);
 	TEST_ASSERT(0 == cs1.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(0 == cs1.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(0 == cs1.getVoltageAtTime(Time(327, 59, 59)));
@@ -211,13 +211,13 @@ void TestConstantSignal_VariedAll()
 	TestFramework::BeginTest("TestConstantSignal_VariedAll");
 
 	// Positive voltage offset, positive time offset
-	ConstantSignal cs1(73.8, Time(1, 2, 3));
+	ConstantSignal cs1(Time(1, 2, 3), 73.8);
 	TEST_ASSERT(73.8 == cs1.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(73.8 == cs1.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(73.8 == cs1.getVoltageAtTime(Time(327, 59, 59)));
 
 	// Negative voltage offset, positive time offset
-	ConstantSignal cs2(-73.8, Time(1, 2, 3));
+	ConstantSignal cs2(Time(1, 2, 3), -73.8);
 	TEST_ASSERT(-73.8 == cs2.getVoltageAtTime(Time(0, 0, 0)));
 	TEST_ASSERT(-73.8 == cs2.getVoltageAtTime(Time(1, 1, 1)));
 	TEST_ASSERT(-73.8 == cs2.getVoltageAtTime(Time(327, 59, 59)));
@@ -442,7 +442,7 @@ void TestAngularSensor_takeReadingFromConstantSignal()
 {
 	TestFramework::BeginTest("TestAngularSensor_takeReadingFromConstantSignal");
 
-	ConstantSignal sig(0, Time(0, 1, 0));
+	ConstantSignal sig(Time(0, 1, 0), 0);
 	AngularSensor sensor("angular sensor", sig);
 	stringstream ss;
 	DataRecorder dr(ss);
@@ -491,7 +491,7 @@ void TestPressureSensor_takeReadingFromConstantSignal()
 {
 	TestFramework::BeginTest("TestPressureSensor_takeReadingFromConstantSignal");
 
-	ConstantSignal sig(0, Time(0, 1, 0));
+	ConstantSignal sig(Time(0, 1, 0), 0);
 	PressureSensor sensor("pressure sensor", sig);
 	stringstream ss;
 	DataRecorder dr(ss);
@@ -540,7 +540,7 @@ void TestTemperatureSensor_takeReadingFromConstantSignal()
 {
 	TestFramework::BeginTest("TestTemperatureSensor_takeReadingFromConstantSignal");
 
-	ConstantSignal sig(0, Time(0, 1, 0));
+	ConstantSignal sig(Time(0, 1, 0), 0);
 	TemperatureSensor sensor("temperature sensor", sig);
 	stringstream ss;
 	DataRecorder dr(ss);
@@ -589,7 +589,7 @@ void TestVibrationSensor_takeReadingFromConstantSignal()
 {
 	TestFramework::BeginTest("TestVibrationSensor_takeReadingFromConstantSignal");
 
-	ConstantSignal sig(0, Time(0, 1, 0));
+	ConstantSignal sig(Time(0, 1, 0), 0);
 	VibrationSensor sensor("vibration sensor", sig);
 	stringstream ss;
 	DataRecorder dr(ss);
@@ -652,7 +652,7 @@ void TestMonitoringSystem_takeReading1Sensors()
 
 	stringstream ss;
 	MonitoringSystem ms(ss);
-	ConstantSignal sig(0, Time(0, 0, 0));
+	ConstantSignal sig(Time(0, 0, 0), 0);
 	AngularSensor sensor("Horizontal rotation", sig);
 	ms.addSensor(&sensor);
 	ms.takeReading(Time(0, 0, 0));
@@ -704,7 +704,7 @@ void TestMonitoringSystem_Take2Readings3Sensors()
 	ms.addSensor(&sensor2);
 
 	// Sensor 3
-	ConstantSignal sig3(305.18, Time(0, 0, 0));
+	ConstantSignal sig3(Time(0, 0, 0), 305.18);
 	TemperatureSensor sensor3("Core temperature", sig3);
 	ms.addSensor(&sensor3);
 
@@ -747,12 +747,12 @@ void TestMonitoringSystem_Take5Readings5Sensors()
 	ms.addSensor(&sensor2);
 
 	// Sensor 3
-	ConstantSignal sig3(305.18, Time(0, 0, 0));
+	ConstantSignal sig3(Time(0, 0, 0), 305.18);
 	TemperatureSensor sensor3("Core temperature", sig3);
 	ms.addSensor(&sensor3);
 
 	// Sensor 4
-	ConstantSignal sig4(10, Time(0, 0, 0));
+	ConstantSignal sig4(Time(0, 0, 0), 10);
 	VibrationSensor sensor4("Wing vibration", sig4);
 	ms.addSensor(&sensor4);
 

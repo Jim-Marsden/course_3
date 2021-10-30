@@ -4,17 +4,21 @@
 
 #include "Sensor.h"
 
-Sensor::Sensor(std::string name, Signal &signal): name{name}, signal{signal} {}
+Project2::Sensor::Sensor(std::string name, Project2::Signal &signal): name{name}, signal{signal} {}
 
-std::string Sensor::getName() const {
+std::string Project2::Sensor::getName() const {
     return name;
 }
 
-Signal &Sensor::getSignal() {
+Project2::Signal &Project2::Sensor::getSignal() {
     return signal;
 }
 
-Signal const &Sensor::getSignal() const {
+Project2::Signal const &Project2::Sensor::getSignal() const {
     return signal;
+}
+
+void Project2::Sensor::takeReading(Time time, Project2::DataRecorder &recorder) {
+
 }
 

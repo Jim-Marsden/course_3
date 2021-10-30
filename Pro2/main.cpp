@@ -27,7 +27,7 @@ int main()
     Project2UnitTest::TestPressureSensor();
     Project2UnitTest::TestTemperatureSensor();
     Project2UnitTest::TestVibrationSensor();
-    Project2UnitTest::TestMonitoringSystem();
+//    Project2UnitTest::TestMonitoringSystem();
 
     // Display test results
     Project2UnitTest::DisplaySummary();

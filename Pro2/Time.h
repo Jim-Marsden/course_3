@@ -6,23 +6,32 @@
 #define COURSE_3_TIME_H
 
 #include <ostream>
-class Time {
-public:
-    Time(unsigned hours, unsigned minutes, unsigned seconds);
 
-    Time() = delete;
-    Time(Time const &) = default;
-    Time(Time &&) = default;
-    ~Time() = default;
+namespace Project2 {
+    class Time {
+    public:
+        Time(unsigned hours, unsigned minutes, unsigned seconds);
 
-    Time & operator=(Time const &) = default;
-    Time const & operator +=(Time const &);
-    friend std::ostream & operator<<(std::ostream & os, Time const &);
+        Time() = delete;
 
-private:
-    unsigned long long seconds;
+        Time(Time const &) = default;
 
-};
+        Time(Time &&) = default;
 
+        ~Time() = default;
+
+        auto operator=(Time const &) -> Time & = default;
+
+        auto operator+=(Time const &) -> Time const & ;
+
+        friend std::ostream &operator<<(std::ostream &os, Time const &);
+
+        [[nodiscard]] auto getTotalTimeAsSeconds()  const -> unsigned long long;
+
+    private:
+        unsigned long long seconds;
+
+    };
+} // namespace Project2
 
 #endif //COURSE_3_TIME_H

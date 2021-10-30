@@ -9,20 +9,26 @@
 #include "Signal.h"
 #include "DataRecorder.h"
 
-class Sensor {
-public:
-    Sensor(std::string name, Signal & signal);
-    void takeReadings(Time time, DataRecorder & recorder);
+namespace Project2 {
+    class Sensor {
+    public:
+        Sensor(std::string name, Project2::Signal &signal);
 
-protected:
-    virtual std::string getUnits()=0;
-    [[nodiscard]] std::string getName() const;
-    [[nodiscard]] Signal & getSignal();
-    [[nodiscard]] Signal const & getSignal() const;
-private:
-    Signal & signal;
-    std::string name;
-};
+        void takeReading(Time time, Project2::DataRecorder &recorder);
 
+    protected:
+        [[nodiscard]] virtual auto getUnits() const  ->  std::string = 0;
+
+        [[nodiscard]] auto getName() const -> std::string;
+
+        [[nodiscard]] auto getSignal() -> Signal&;
+
+        [[nodiscard]] auto getSignal() const -> Signal const &;
+
+    private:
+        Signal &signal;
+        std::string name;
+    };
+} // namespace Project2
 
 #endif //COURSE_3_SENSOR_H

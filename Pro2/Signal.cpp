@@ -4,12 +4,12 @@
 
 #include "Signal.h"
 
-Signal::Signal(Time timeOffset, double voltageOffset): timeOffset(timeOffset), voltageOffset(voltageOffset) {}
+Project2::Signal::Signal(Time timeOffset, double voltageOffset) : timeOffset(timeOffset), voltageOffset(voltageOffset) {}
 
-double Signal::getVoltageOffset() const {
+double Project2::Signal::getVoltageOffset() const {
     return voltageOffset;
 }
 
-Time Signal::getTimeOffset() const {
+Project2::Time Project2::Signal::getTimeOffset() const {
     return timeOffset;
 }

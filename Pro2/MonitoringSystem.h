@@ -7,12 +7,21 @@
 
 #include <memory>
 #include <vector>
+#include "Sensor.h"
 
-class MonitoringSystem {
+namespace Project2 {
+    class MonitoringSystem {
+    public:
 
-private:
-    std::vector<std::unique_ptr<Sensor>> sensors;
-};
+        MonitoringSystem(std::ostream & stringstream);
 
+        void addSensor(Sensor*);
+        void takeReading(Project2::Time time);
+    private:
+        std::vector<std::unique_ptr<Project2::Sensor>> sensors;
+        DataRecorder dataRecorder;
 
+    };
+
+} // namespace Project2
 #endif //COURSE_3_MONITORINGSYSTEM_H
