@@ -1,17 +1,20 @@
 //
-// Created by james on 10/28/2021.
+// Jim Marsden (U09247027)
+// JimPMarsden@gmail.com
+// CSE-40477
+// 159167 C/C++ Programming III -- Ray Mitchell
+// 10/28/2021
+// https://Jim-Marsden/course_3
+// =====================================================================
+// Date.h Tested on the following compilers in C++17 standard
+// MSVC - 14.19
 //
-
+// Tests for Array.h
+// =====================================================================
+//
 #include "Array.h"
 #include <iostream>
 
-template<class array_t>
-void print(array_t const &array) {
-    for (auto const &e: array) {
-        std::cout << e << ", ";
-    }
-    std::cout << '\n';
-}
 
 bool test_a();
 
@@ -42,36 +45,27 @@ int main() {
         else std::cout << "failed.\n";
     };
 
-    test_printer("a", test_a()); // a. Create an Array using the default constructor [done]
-    test_printer("b",
-                 test_b()); // b. Modify all of the elements of an Array using the L-value subscript operator [ done ]
-    test_printer("c", test_c()); // c. Output all of the elements of an Array using the R-value subscript operator
-    test_printer("d", test_d()); // d. Create a const Array from another Array using the copy constructor
-    test_printer("e", test_e()); // e. Assign an Array to an existing Array using the copy assignment operator
-    test_printer("f", test_f()); // f. Compare two Arrays using the equality operator [ done ]
-    test_printer("g", test_g()); // g. Compare two Arrays using the inequality operator [ done ]
-
-    test_printer("h", test_h()); /* h. Demonstrate an invalid_argument exception being thrown and caught when the
-                                             * L-value subscript operator is accessed with an index < 0*/
-
-    test_printer("i", test_i()); /*i. Demonstrate an invalid_argument exception being thrown and caught when the
-                                             * L-value subscript operator is accessed with an index >= SIZE*/
+    test_printer("a", test_a());
+    test_printer("b", test_b());
+    test_printer("c", test_c());
+    test_printer("d", test_d());
+    test_printer("e", test_e());
+    test_printer("f", test_f());
+    test_printer("g", test_g());
 
     // This test is invalid, as I used an unsigned integer. Therefore, it cannot be less than 0. I think the program would be malformed if you can access -1 on an array.
-    test_printer("j", test_j()); /* j. Demonstrate an invalid_argument exception being thrown and caught when the
-                                            * R-value subscript operator is accessed with an index < 0 (you can force the R-value
-                                            * subscript operator to be called by accessing an element in the const Array). */
+    test_printer("h", test_h());
+    test_printer("i", test_i());
+    test_printer("j", test_j());
 
     // This test is invalid, as I used an unsigned integer. Therefore, it cannot be less than 0. I think the program would be malformed if you can access -1 on an array.
-    test_printer("k", test_k()); /* k. Demonstrate an invalid_argument exception being thrown and caught when the
-                                             * R-value subscript operator is accessed with an index >= SIZE (you can force the R-
-                                             * value subscript operator to be called by accessing an element in the const Array) */
-
+    test_printer("k", test_k());
 }
 
 using JimMarsden::Array;
 
 
+// a. Create an Array using the default constructor [done]
 bool test_a() {
     Array<int, 0xff> array1;
     for (auto &element: array1) { if (element != int{}) return false; }
@@ -80,6 +74,7 @@ bool test_a() {
     return true;
 }
 
+// b. Modify all of the elements of an Array using the L-value subscript operator
 bool test_b() {
     Array<unsigned, 0xff> array1;
     for (unsigned c{}; c < array1.size(); c++) {
@@ -91,6 +86,7 @@ bool test_b() {
     return true;
 }
 
+// c. Output all of the elements of an Array using the R-value subscript operator
 bool test_c() {
     Array<unsigned, 0xf> array1;
 
@@ -106,6 +102,7 @@ bool test_c() {
     return true;
 }
 
+// d. Create a const Array from another Array using the copy constructor
 bool test_d() {
     Array<unsigned, 0xf> array1;
 
@@ -119,6 +116,7 @@ bool test_d() {
     return true;
 }
 
+// e. Assign an Array to an existing Array using the copy assignment operator
 bool test_e() {
     Array<unsigned, 0xf> array1;
 
@@ -132,6 +130,7 @@ bool test_e() {
     return true;
 }
 
+// f. Compare two Arrays using the equality operator
 bool test_f() {
 
     Array<unsigned, 0xf> array1;
@@ -143,6 +142,7 @@ bool test_f() {
     return array1 == array2 && !(array1 == decltype(array1){});
 }
 
+// g. Compare two Arrays using the inequality operator
 bool test_g() {
     Array<unsigned, 0xf> array1;
 
@@ -153,7 +153,20 @@ bool test_g() {
     return array1 != decltype(array1){};
 }
 
+/*
+ * (Invalid test)
+ * h. Demonstrate an invalid_argument exception being thrown and caught when the
+ * L-value subscript operator is accessed with an index < 0*/
+
 bool test_h() {
+    return true;
+}
+
+/*
+ * i. Demonstrate an invalid_argument exception being thrown and caught when the
+ * L-value subscript operator is accessed with an index >= SIZE
+ */
+bool test_i() {
     constexpr auto size_of_array = 0xf;
     Array<unsigned, size_of_array> array1;
     try{
@@ -164,8 +177,13 @@ bool test_h() {
     }
     return false;
 }
+/*
+ * j. Demonstrate an invalid_argument exception being thrown and caught when the
+ * R-value subscript operator is accessed with an index < 0 (you can force the R-value
+ * subscript operator to be called by accessing an element in the const Array).
+ */
 
-bool test_i() {
+bool test_j() {
 
     constexpr auto size_of_array = 0xf;
     const Array<unsigned, size_of_array> array1;
@@ -176,8 +194,13 @@ bool test_i() {
         return true;
     }
     return false;
+
 }
 
-bool test_j() { return true; }
-
-bool test_k() { return false; }
+/*
+ * (Invalid)
+ * k. Demonstrate an invalid_argument exception being thrown and caught when the
+ * R-value subscript operator is accessed with an index >= SIZE (you can force the R-
+ * value subscript operator to be called by accessing an element in the const Array)
+ */
+bool test_k() { return true; }

@@ -11,7 +11,6 @@
 namespace Project2 {
     class ConstantSignal : public Signal {
     public:
-//        ConstantSignal(double voltageOffset, const Time &timeOffset);
         ConstantSignal(  Time timeOffset, double voltageOffset);
         [[nodiscard]] double getVoltageAtTime(Time const & time) const override;
 

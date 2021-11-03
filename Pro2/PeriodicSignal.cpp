@@ -12,7 +12,7 @@ auto Project2::PeriodicSignal::getMaxVoltage() const -> double {
     return maxVoltage;
 }
 
-auto Project2::PeriodicSignal::getPeriod() -> Time {
+auto Project2::PeriodicSignal::getPeriod() const -> Time {
     return period;
 }
 

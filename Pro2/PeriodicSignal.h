@@ -14,9 +14,9 @@ namespace Project2 {
         PeriodicSignal(double voltageOffset, const Time &timeOffset, double minVoltage, double maxVoltage, Time period);
 
     protected:
-        auto getMinVoltage() const -> double;
-        auto getMaxVoltage() const -> double;
-        auto getPeriod() -> Time;
+        [[nodiscard]] auto getMinVoltage() const -> double;
+        [[nodiscard]] auto getMaxVoltage() const -> double;
+        [[nodiscard]] auto getPeriod() const -> Time;
 
     private:
         double minVoltage;

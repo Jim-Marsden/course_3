@@ -18,7 +18,7 @@ namespace Project2 {
         void addSensor(Sensor*);
         void takeReading(Project2::Time time);
     private:
-        std::vector<std::unique_ptr<Project2::Sensor>> sensors;
+        std::vector<Project2::Sensor*> sensors;
         DataRecorder dataRecorder;
 
     };

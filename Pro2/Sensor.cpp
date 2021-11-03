@@ -19,6 +19,6 @@ Project2::Signal const &Project2::Sensor::getSignal() const {
 }
 
 void Project2::Sensor::takeReading(Time time, Project2::DataRecorder &recorder) {
-
+    recorder.log(time, getName(), getSignal().getVoltageAtTime(time), getUnits());
 }
 

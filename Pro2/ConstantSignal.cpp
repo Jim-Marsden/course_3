@@ -4,11 +4,8 @@
 
 #include "ConstantSignal.h"
 
-//Project2::ConstantSignal::ConstantSignal(double voltageOffset, const Time &timeOffset) : Signal(timeOffset,
-//                                                                                                voltageOffset) {}
-
 double Project2::ConstantSignal::getVoltageAtTime(const Time &time) const {
-    return this->getVoltageOffset() * getVoltageOffset();
+    return getVoltageOffset();
 }
 
 Project2::ConstantSignal::ConstantSignal( Project2::Time timeOffset, double voltageOffset) : Signal(timeOffset,

@@ -14,15 +14,19 @@ namespace Project2 {
 
     protected:
     public:
+        //[ Constructors/ Destructors ] ================================== [ Constructors/ Destructors ] 
         AngularSensor(const std::string &name, Signal &signal);
-
         AngularSensor(AngularSensor const&) = default;
-        AngularSensor() = delete;
         AngularSensor(AngularSensor  &&) = default;
         ~AngularSensor() = default;
 
+        //[ Operators ] ================================== [ Operators ] 
+        AngularSensor() = delete;
+
+
     protected:
-        [[nodiscard]] std::string getUnits() const override;
+        // [ Private Accessors ] ==========================================[ Private Accessors ]
+        [[nodiscard]] std::string getUnits() const override; // Should return "Radians"
     };
 }
 

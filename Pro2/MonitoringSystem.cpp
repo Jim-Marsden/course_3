@@ -9,6 +9,11 @@ Project2::MonitoringSystem::MonitoringSystem(std::ostream &out) : dataRecorder(o
 }
 
 void Project2::MonitoringSystem::takeReading(Project2::Time time) {
+    for(auto const & element : sensors){
+        //void log(Time time, std::string sensorName, double sensorVoltage, std::string sensorUnits);
+//        dataRecorder.log(time, elemen )
+        element->takeReading(time, dataRecorder);
+    }
 
 }
 
