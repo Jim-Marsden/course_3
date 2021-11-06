@@ -33,6 +33,6 @@ int main()
     Project2UnitTest::DisplaySummary();
 
     // Wait for user input
-//    cout << endl << "Press enter to continue...";
-//    cin.get();
+    cout << endl << "Press enter to continue...";
+    cin.get();
 }
